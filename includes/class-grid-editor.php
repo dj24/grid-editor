@@ -67,6 +67,26 @@ class Grid_Editor {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
+
+		function grid_editor_page(){
+			if($_GET['page'] == 'grid-editor' ){
+				wp_redirect( "/test-grid.html");
+				exit;
+			}
+		}
+		add_action( 'init', 'grid_editor_page' );
+
+		add_action( 'admin_menu', 'grid_editor_menu' );
+		function grid_editor_menu(){$page_title = 'Grid Editor';
+		   $menu_title = 'Grid Editor';
+		   $capability = 'manage_options';
+		   $menu_slug  = 'grid-editor';
+		   $function   = 'grid_editor_page';
+			 $icon_url   = 'dashicons-schedule';
+		   $position   = 2;
+			 add_menu_page( $page_title,$menu_title,$capability,$menu_slug,$function,$icon_url, $position );
+		}
+
 		if ( defined( 'GRID_EDITOR_VERSION' ) ) {
 			$this->version = GRID_EDITOR_VERSION;
 		} else {
