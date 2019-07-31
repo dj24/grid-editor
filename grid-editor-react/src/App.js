@@ -1,6 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { Rnd } from "react-rnd";
+
+const style = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  border: "solid 1px #ddd",
+  background: "#f0f0f0"
+};
 
 function App() {
   return (
@@ -19,6 +28,32 @@ function App() {
           Learn React
         </a>
       </header>
+      <Rnd
+        style={style}
+        dragGrid={[20, 20]}
+        resizeGrid={[20, 20]}
+        default={{
+          x: 0,
+          y: 220,
+          width: 320,
+          height: 200
+        }}
+      >
+        Rnd
+      </Rnd>
+      <Rnd
+        style={style}
+        dragGrid={[20, 20]}
+        resizeGrid={[20, 20]}
+        default={{
+          x: 0,
+          y: 0,
+          width: 320,
+          height: 200
+        }}
+      >
+        Rnd
+      </Rnd>
     </div>
   );
 }
