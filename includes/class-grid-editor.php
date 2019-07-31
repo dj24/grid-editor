@@ -70,7 +70,7 @@ class Grid_Editor {
 
 		function grid_editor_page(){
 			if($_GET['page'] == 'grid-editor' ){
-				wp_redirect( "/test-grid.html");
+				wp_redirect( "/wp-content/plugins/grid-editor/grid-editor-react/build/");
 				exit;
 			}
 		}
