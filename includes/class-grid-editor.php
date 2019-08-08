@@ -99,6 +99,7 @@ class Grid_Editor {
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 
+
 		function  markers_endpoint( $request_data ) {
 		$args = array(
 			'post_type'      => 'attachment',
@@ -111,11 +112,26 @@ class Grid_Editor {
 				return  $posts;
 		}
 
+		function add_post_endpoint( $request_data ) {
+			$html = $request_data->get_json_params()['html'];
+			$args = array(
+				'post_title' => 'API Test Page',
+				'post_type' => 'page',
+				'post_content' => $html
+			);
+			wp_insert_post($args);
+			return $request_data;
+		}
+
 
 		add_action( 'rest_api_init', function () {
 				register_rest_route( 'markers/v1', '/image/', array(
 						'methods' => 'GET',
 						'callback' => 'markers_endpoint'
+				));
+				register_rest_route( 'markers/v1', '/post/', array(
+						'methods' => 'POST',
+						'callback' => 'add_post_endpoint'
 				));
 		});
 

@@ -7,7 +7,7 @@ function Sidebar(props) {
   return (
     <div className="SidebarContainer animated fadeInRight">
       <div className="Sidebar">
-        <button data-tip="Save Page">
+        <button onClick={props.saveFunc} data-tip="Save Page">
           <ion-icon name="save" />
         </button>
         <button

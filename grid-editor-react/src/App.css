@@ -66,10 +66,22 @@
   margin-bottom: 30px;
 }
 
+.row img {
+  cursor: pointer;
+  max-width: 300px;
+  padding: 0;
+  margin: 15px;
+}
+
+.row img.selected {
+  border: 2px solid blue;
+}
+
 .react-draggable {
   transition: box-shadow ease 0.4s;
   transform-origin: bottom;
+  border: 1px solid rgba(0, 0, 0, 0.25);
 }
 .react-draggable:hover {
-  box-shadow: 0 0 20px aqua;
+  border: 1px solid rgba(0, 0, 255, 1);
 }

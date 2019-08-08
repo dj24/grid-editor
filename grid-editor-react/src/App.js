@@ -16,7 +16,8 @@ const MyAwesomeMenu = () => (
       Delete
     </Item>
     <Item>
-      <ion-icon name="copy" />Duplicate
+      <ion-icon name="copy" />
+      Duplicate
     </Item>
   </Menu>
 );
@@ -33,6 +34,20 @@ class App extends React.Component {
     this.addTextBlock = this.addTextBlock.bind(this);
     this.addImageBlock = this.addImageBlock.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
+  }
+
+  saveLayout() {
+    let html = document.getElementById("root").innerHTML;
+    let payload = { html };
+    axios
+      .post("http://localhost/wp-json/markers/v1/post", payload)
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {
+        // handle error
+        console.error(error);
+      });
   }
 
   componentDidMount() {
@@ -81,8 +96,12 @@ class App extends React.Component {
       console.log(item);
       return (
         <img
+          className={
+            this.state.selectedImg === item.guid
+              ? "selected col-3 mb-4 "
+              : "col-3 mb-4 "
+          }
           onClick={this.getSrc.bind(this)}
-          class="col-3 mb-4"
           src={item.guid}
         />
       );
@@ -90,7 +109,7 @@ class App extends React.Component {
 
     return (
       <div id="root" className="App">
-        <Sidebar textFunc={this.addTextBlock} />
+        <Sidebar textFunc={this.addTextBlock} saveFunc={this.saveLayout} />
         {this.textBlocks}
         {this.imageBlocks}
         <Modal
